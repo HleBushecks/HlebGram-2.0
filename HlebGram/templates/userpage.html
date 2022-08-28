@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="profilepage">
+    <div class="user">
+        <div class="photo">
+            <a href="{{ photo }}"><img src="{{ photo }}"></a>
+        </div>
+        <div class="description">
+            <h5>{{ username }}</h5>
+
+            {% if description %}
+            <p>{{ description }}</p>
+            {% endif %}
+
+            <p>
+                <a href="/user/{{ pk }}/subscribers">Subscribers</a>
+                <a href="/user/{{ pk }}/subscriptions">Subscriptions</a>
+            </p>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <button name="state_value" type="submit" value="{{ state_value }}" class="subbtn">{{ state }}</button>
+            </form>
+        </div>
+    </div>
+
+    {% if images %}
+    <div class="photos">
+        {% for i in images %}
+        <div class="photo">
+            <a href="/photo/{{ i.pk }}"><img src="{{ i.path }}/{{ i.name }}"></a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

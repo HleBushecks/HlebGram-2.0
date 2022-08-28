@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<main class="userslist">
+    {% for i in images %}
+
+
+    <div>
+        <a href="{{ i.path }}/{{ i.name }}"><img src="{{ i.path }}/{{ i.name }}"></a>
+
+        <a href="/user/{{ i.user.pk }}">
+            <h5>{{ i.user }}</h5>
+
+            <p>{{ i.description }}</p>
+        </a>
+    </div>
+
+
+    {% endfor %}
+</main>
+
+
+{% endblock %}

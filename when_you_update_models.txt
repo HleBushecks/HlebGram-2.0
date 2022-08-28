@@ -1,0 +1,7 @@
+./manage.py dumpdata --indent=4 HlebGram -o dump.json
+
+change models.py
+
+rm -f db.sqlite3
+./manage.py migrate --run-syncdb
+./manage.py loaddata dump.json

@@ -1,0 +1,43 @@
+@media (max-width:700px) {
+    .label {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+    }
+
+    .login>div {
+        margin-top: -50vh;
+        transition: 1s;
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+        align-items: center;
+    }
+
+    .searchpage>div {
+        margin-top: -50vh;
+        transition: 1s;
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+        align-items: center;
+    }
+
+    div ul {
+        flex-direction: column;
+    }
+
+    div ul li {
+        margin-bottom: 10px;
+    }
+
+    #menu_toggle:checked~div {
+        margin: 0;
+    }
+
+
+
+}

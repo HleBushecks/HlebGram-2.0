@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="addphotopage">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" accept="image/*" name="add_photo">
+        <textarea name="description" placeholder="Description"></textarea>
+        <button type="submit">Add New Photo</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="changeprofilepage">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="photo">
+            <a href="{{ user.profile_photo.url }}"><img src="{{ user.profile_photo.url }}"></a>
+            <input type="file" accept="image/*" name="new_photo">
+
+        </div>
+        <div class="description">
+
+            <h5>{{ user.username }}</h5>
+            <textarea name="new_description">{{ user.description }}</textarea>
+            <button type="submit" class="btn btn-secondary">Accept Changes</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

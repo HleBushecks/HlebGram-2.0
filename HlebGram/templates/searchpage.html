@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HlebGram</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'bread.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/media.css' %}">
+</head>
+
+<body>
+
+    <header class="searchpage">
+        <a href="{% url 'startpage' %}">HlebGram</a>
+        <input type="checkbox" id="menu_toggle" />
+        <label for="menu_toggle" class="label">&#9776;</label>
+        <div>
+            <ul class="left">
+                <li>
+                    <a href="{% url 'profilepage' %}">Profile</a>
+                </li>
+
+            </ul>
+            <ul class="center">
+                <form action="" method="GET">
+                    <input type="text" placeholder="Search User" name="s" value="{{ get }}">
+                    <button type="submit"><img src="{% static 'search.svg' %}"></button>
+                </form>
+            </ul>
+
+            <ul class="right">
+
+                <li>
+                    <form action="{% url 'logoutpage' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Loguot</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+    </header>
+
+    <main class="userslist">
+        {% for i in result %}
+
+        {% if i.username != user.username %}
+
+        <div>
+            <a href="{{ i.profile_photo.url }}">
+                <img src="{{ i.profile_photo.url }}">
+            </a>
+
+            <a href="/user/{{ i.pk }}">
+                <h5>{{ i.username }}</h5>
+                <p>{{ i.description }}</p>
+            </a>
+        </div>
+
+        {% endif %}
+        {% endfor %}
+    </main>
+
+</body>
+
+</html>

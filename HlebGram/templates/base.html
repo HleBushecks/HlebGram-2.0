@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HlebGram</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'bread.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/media.css' %}">
+</head>
+
+<body>
+
+    {% if user.is_authenticated %}
+    <header class="login">
+        <a href="{% url 'startpage' %}">HlebGram</a>
+        <input type="checkbox" id="menu_toggle" />
+        <label for="menu_toggle" class="label">&#9776;</label>
+        <div>
+            <ul class="left">
+                <li>
+                    <a href="{% url 'profilepage' %}">Profile</a>
+                </li>
+                <li>
+                    <a href="{% url 'searchpage' %}">Search</a>
+                </li>
+            </ul>
+            <ul class="right">
+                {% if add_photo_btn %}
+                <li>
+                    <a href="{% url 'addphotopage' %}">{{ add_photo_btn }}</a>
+                </li>
+                {% endif %}
+
+                {% if change_btn %}
+                <li>
+                    <a href="{% url 'changepage' %}">{{ change_btn }}</a>
+                </li>
+                {% endif %}
+
+                {% if delete_btn %}
+                <li>
+                    <form action="{% url 'deletepage' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="delete" value="{{ pk }}">{{ delete_btn }}</button>
+                    </form>
+                </li>
+                {% endif %}
+                <li>
+                    <form action="{% url 'logoutpage' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Loguot</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+    </header>
+    {% else %}
+
+    <header class="unlogin">
+        <a href="{% url 'startpage' %}">HlebGram</a>
+        <ul>
+            <li>
+                <a href="{% url 'signuppage' %}">Sign Up</a>
+            </li>
+            <li>
+                <a href="{% url 'loginpage' %}">Login</a>
+            </li>
+        </ul>
+    </header>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+</body>
+
+</html>
